@@ -1,6 +1,6 @@
-'From Cuis 5.0 [latest update: #4528] on 10 March 2021 at 12:27:57 pm'!
+'From Cuis 5.0 [latest update: #4528] on 10 March 2021 at 1:03:12 pm'!
 'Description Magritte is a fully dynamic meta-description framework.'!
-!provides: 'Magritte' 1 3!
+!provides: 'Magritte' 1 4!
 SystemOrganization addCategory: #'Magritte-Model-Core'!
 SystemOrganization addCategory: #'Magritte-Model-Models'!
 SystemOrganization addCategory: #'Magritte-Model-Description'!
@@ -1309,14 +1309,14 @@ Object subclass: #MAMockAddress
 MAMockAddress class
 	instanceVariableNames: ''!
 
-!classDefinition: #Address category: #'Magritte-Examples'!
-Object subclass: #Address
-	instanceVariableNames: ''
+!classDefinition: #MAAddress category: #'Magritte-Examples'!
+Object subclass: #MAAddress
+	instanceVariableNames: 'street place plz canton'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Magritte-Examples'!
-!classDefinition: 'Address class' category: #'Magritte-Examples'!
-Address class
+!classDefinition: 'MAAddress class' category: #'Magritte-Examples'!
+MAAddress class
 	instanceVariableNames: ''!
 
 !classDefinition: #MAProxyObject category: #'Magritte-Model-Utility'!
@@ -9211,10 +9211,10 @@ register
 		notify: self ofSystemChangesOfItem: #method change: #Modified using: #modified:;
 		notify: self ofSystemChangesOfItem: #method change: #Removed using: #modified:"! !
 
-!MADescriptionBuilder methodsFor: 'actions' stamp: 'lr 3/27/2006 14:45'!
+!MADescriptionBuilder methodsFor: 'actions' stamp: 'MM 3/10/2021 13:02:24'!
 unregister
-	SystemChangeNotifier uniqueInstance
-		noMoreNotificationsFor: self! !
+	"SystemChangeNotifier uniqueInstance
+		noMoreNotificationsFor: self"! !
 
 !MADescriptionBuilder methodsFor: 'accessing' stamp: 'lr 9/12/2007 17:26'!
 for: anObject
@@ -9240,8 +9240,9 @@ for: anObject
 new
 	^ self basicNew initialize! !
 
-!MADescriptionBuilder class methodsFor: 'initialization' stamp: 'lr 7/5/2009 10:52'!
+!MADescriptionBuilder class methodsFor: 'initialization' stamp: 'MM 3/10/2021 13:02:06'!
 unload
+	"self unload"
 	self default finalize.
 	self default: nil! !
 
@@ -9491,14 +9492,85 @@ descriptionStreet
 		label: 'Street';
 		yourself! !
 
-!Address class methodsFor: 'as yet unclassified' stamp: 'MM 3/10/2021 11:03:31'!
+!MAAddress methodsFor: 'accessing' stamp: 'MM 3/10/2021 12:57:42'!
+canton
+	"Answer the value of canton"
+
+	^ canton! !
+
+!MAAddress methodsFor: 'accessing' stamp: 'MM 3/10/2021 12:57:42'!
+canton: anObject
+	"Set the value of canton"
+
+	canton _ anObject! !
+
+!MAAddress methodsFor: 'accessing' stamp: 'MM 3/10/2021 12:57:42'!
+place
+	"Answer the value of place"
+
+	^ place! !
+
+!MAAddress methodsFor: 'accessing' stamp: 'MM 3/10/2021 12:57:42'!
+place: anObject
+	"Set the value of place"
+
+	place _ anObject! !
+
+!MAAddress methodsFor: 'accessing' stamp: 'MM 3/10/2021 12:57:42'!
+plz
+	"Answer the value of plz"
+
+	^ plz! !
+
+!MAAddress methodsFor: 'accessing' stamp: 'MM 3/10/2021 12:57:42'!
+plz: anObject
+	"Set the value of plz"
+
+	plz _ anObject! !
+
+!MAAddress methodsFor: 'accessing' stamp: 'MM 3/10/2021 12:57:42'!
+street
+	"Answer the value of street"
+
+	^ street! !
+
+!MAAddress methodsFor: 'accessing' stamp: 'MM 3/10/2021 12:57:42'!
+street: anObject
+	"Set the value of street"
+
+	street _ anObject! !
+
+!MAAddress class methodsFor: 'as yet unclassified' stamp: 'MM 3/10/2021 13:01:13'!
+descriptionPlz
+
+	^ MANumberDescription new
+		accessor: #plz;
+		label: 'PLZ';
+		priority: 20;
+		min: 1000;
+		max: 9999;
+		yourself! !
+
+!MAAddress class methodsFor: 'as yet unclassified' stamp: 'MM 3/10/2021 12:58:18'!
 descriptionStreet
 
 	^ MAStringDescription new
    	     	accessor: #street;
         		label: 'Street';
-        		priority: 100;
+        		priority: 10;
         		yourself! !
+
+!MAAddress class methodsFor: 'as yet unclassified' stamp: 'MM 3/10/2021 12:57:22'!
+example1
+
+	| address |
+
+	address := self new.
+	address plz: 1001.
+	address street: 'Sesame'.
+	address place: 'DreamTown'.
+	address canton: 'Bern'.
+	^ address! !
 
 !MAProxyObject methodsFor: 'copying' stamp: 'lr 5/17/2006 15:30'!
 copy
