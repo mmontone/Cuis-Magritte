@@ -1,6 +1,6 @@
-'From Cuis 5.0 [latest update: #4528] on 12 March 2021 at 9:59:55 am'!
+'From Cuis 5.0 [latest update: #4528] on 12 March 2021 at 1:26:33 pm'!
 'Description '!
-!provides: 'MagritteBook' 1 2!
+!provides: 'MagritteBook' 1 3!
 !requires: 'Erudite' 1 152 nil!
 !requires: 'Magritte' 1 8 nil!
 SystemOrganization addCategory: 'MagritteBook'!
@@ -17,7 +17,7 @@ MagritteBook class
 	instanceVariableNames: ''!
 
 
-!MagritteBook methodsFor: 'as yet unclassified' stamp: 'MM 3/12/2021 09:55:08'!
+!MagritteBook methodsFor: 'as yet unclassified' stamp: 'MM 3/12/2021 13:26:29'!
 FirstConcreteExample
 ^(EruditeBookSection basicNew title: 'First concrete example'; document: ((EruditeDocument contents: '!!!! First concrete example
 
@@ -41,38 +41,44 @@ as a single option description.
 
 {MAAddress class>>descriptionStreet ::method}[embed]
 
-MAAddress >> descriptionPlz
-<magritteDescription>
-^ MANumberDescription new
-accessor: #plz;
-label: ''PLZ'';
-priority: 20;
-min: 1000;
-max: 9999;
-yourself
-82.3 First magritte program
-MAAddress >> descriptionPlace
-<magritteDescription>
-^ MAStringDescription new
-accessor: #place;
-label: ''Place'';
-priority: 30;
-yourself
-MAAddress >> descriptionCanton
-<magritteDescription>
-^ MASingleOptionDescription new
-options: #( ''Zurich'' ''Bern'' ''Luzern'' ''Uri'' ''Schwyz''
-''Unterwalden'' ''Glarus'' ''Zug'' ''Freiburg'' ''Solothurn'' ''Basel''
-''Schaffhausen'' ''Appenzell'' ''St. Gallen'' ''Graubunden'' ''Aargau''
-''Thurgau'' ''Ticino'' ''Vaud'' ''Valais'' ''Neuchatel'' ''Geneve'' ''Jura'' );
-reference: MAStringDescription new;
-accessor: #canton;
-label: ''Canton'';
-priority: 40;
-beSorted;
-yourself') images: ((Dictionary new)); yourself); subsections: (OrderedCollection new yourself); yourself)! !
+{MAAddress class>> descriptionPlz ::method}[embed]
 
-!MagritteBook methodsFor: 'as yet unclassified' stamp: 'MM 3/12/2021 09:55:08'!
+{MAAddress class>>descriptionPlace ::method}[embed]
+
+{MAAddress class>>descriptionCanton ::method}[embed]
+
+!!!!!! First magritte program
+
+Now we can start manipulating the descriptions. Inspect the description ob-
+ject of the address object:
+
+[[[
+| address |
+address := MAAddress example1.
+address magritteDescription inspect.
+]]] doIt.
+
+We can iterate over the descriptions and get the values associated with the
+descriptions of our address model:
+
+[[[
+| address |
+address := MAAddress example1.
+address magritteDescription do: [ :description |
+Transcript
+show: description label; show: '':''; tab;
+show: (description toString: (address readUsing: description));
+cr ]
+]]] doIt.
+
+Executing the second code snippet outputs the following in the Transcript:
+
+Street: Sesame
+PLZ: 1001
+Place: DreamTown
+Canton: Bern') images: ((Dictionary new)); yourself); subsections: (OrderedCollection new yourself); yourself)! !
+
+!MagritteBook methodsFor: 'as yet unclassified' stamp: 'MM 3/12/2021 13:26:29'!
 Introduction
 ^(EruditeBookSection basicNew title: 'Introduction'; document: ((EruditeDocument contents: 'This booklet describes Magritte and one tutorial to illustrate it. Magritte is
 a meta-data driven framework. This means that you describe your objects
@@ -90,7 +96,7 @@ ated using Magritte.
 In this booklet we present briefly the latest version of Magritte and we pro-
 pose a serie of exercises.') images: ((Dictionary new)); yourself); subsections: (OrderedCollection new yourself); yourself)! !
 
-!MagritteBook methodsFor: 'as yet unclassified' stamp: 'MM 3/12/2021 09:55:08'!
+!MagritteBook methodsFor: 'as yet unclassified' stamp: 'MM 3/12/2021 13:26:29'!
 MagritteInANutshell
 ^(EruditeBookSection basicNew title: 'Magritte in a nutshell'; document: ((EruditeDocument contents: '!!!! Magritte in a nutshell
 
@@ -114,7 +120,7 @@ fore Magritte may imply some extra complexity and you have to understand
 when you want to pay for such complexity.') images: ((Dictionary new)); yourself); subsections: (OrderedCollection new        add: self MagritteInANutshellBasicPrinciples;
  yourself); yourself)! !
 
-!MagritteBook methodsFor: 'as yet unclassified' stamp: 'MM 3/12/2021 09:55:08'!
+!MagritteBook methodsFor: 'as yet unclassified' stamp: 'MM 3/12/2021 13:26:29'!
 MagritteInANutshellBasicPrinciples
 ^(EruditeBookSection basicNew title: 'Basic principles'; document: ((EruditeDocument contents: '!!!!!! Basic principles
 
@@ -152,7 +158,7 @@ Now once we have described an instance, Magritte can build for us different
 representations. An interesting one in the context of web development is the
 automatic creation of Seaside components.') images: ((Dictionary new)); yourself); subsections: (OrderedCollection new yourself); yourself)! !
 
-!MagritteBook methodsFor: 'as yet unclassified' stamp: 'MM 3/12/2021 09:55:08'!
+!MagritteBook methodsFor: 'as yet unclassified' stamp: 'MM 3/12/2021 13:26:29'!
 initialize
     super initialize.
     title _ 'MagritteBook'.
