@@ -1,6 +1,6 @@
-'From Cuis 5.0 [latest update: #4528] on 10 March 2021 at 1:03:12 pm'!
+'From Cuis 5.0 [latest update: #4528] on 10 March 2021 at 2:32:55 pm'!
 'Description Magritte is a fully dynamic meta-description framework.'!
-!provides: 'Magritte' 1 4!
+!provides: 'Magritte' 1 7!
 SystemOrganization addCategory: #'Magritte-Model-Core'!
 SystemOrganization addCategory: #'Magritte-Model-Models'!
 SystemOrganization addCategory: #'Magritte-Model-Description'!
@@ -7244,10 +7244,6 @@ isAbstract
 label
 	^ '1:m Relation'! !
 
-!MAToManyRelationDescription class methodsFor: '*magritte-seaside-accessing-defaults' stamp: 'lr 3/9/2006 11:33'!
-defaultComponentClasses
-	^ Array with: MAOneToManyComponent! !
-
 !MAToManyScalarRelationDescription methodsFor: 'visiting' stamp: 'pmm 11/3/2006 21:09'!
 acceptMagritte: aVisitor
 	aVisitor visitToManyScalarRelationDescription: self! !
@@ -7281,10 +7277,6 @@ isAbstract
 !MAToOneRelationDescription class methodsFor: 'accessing' stamp: 'lr 3/9/2006 11:33'!
 label
 	^ '1:1 Relation'! !
-
-!MAToOneRelationDescription class methodsFor: '*magritte-seaside-defaults' stamp: 'lr 3/9/2006 11:33'!
-defaultComponentClasses
-	^ Array with: MAExternalEditorComponent with: MAInternalEditorComponent! !
 
 !MATableDescription methodsFor: 'visiting' stamp: 'lr 3/9/2006 11:32'!
 acceptMagritte: aVisitor
@@ -7382,10 +7374,6 @@ isAbstract
 label
 	^ 'Table'! !
 
-!MATableDescription class methodsFor: '*magritte-seaside-defaults' stamp: 'lr 3/9/2006 11:33'!
-defaultComponentClasses
-	^ Array with: MATableComponent! !
-
 !MATokenDescription methodsFor: 'visiting' stamp: 'lr 3/9/2006 11:32'!
 acceptMagritte: aVisitor
 	aVisitor visitTokenDescription: self! !
@@ -7424,10 +7412,6 @@ isAbstract
 label
 	^ 'Token'! !
 
-!MATokenDescription class methodsFor: '*magritte-seaside-defaults' stamp: 'lr 3/9/2007 15:27'!
-defaultComponentClasses
-	^ Array with: MATextInputComponent! !
-
 !MAStringDescription methodsFor: 'visiting' stamp: 'lr 3/9/2006 11:32'!
 acceptMagritte: aVisitor
 	aVisitor visitStringDescription: self! !
@@ -7447,10 +7431,6 @@ isAbstract
 !MAStringDescription class methodsFor: 'accessing' stamp: 'lr 3/9/2006 11:33'!
 label
 	^ 'String'! !
-
-!MAStringDescription class methodsFor: '*magritte-seaside-defaults' stamp: 'lr 3/9/2006 11:33'!
-defaultComponentClasses
-	^ Array with: MATextInputComponent! !
 
 !MAMemoDescription methodsFor: 'visiting' stamp: 'lr 3/9/2006 11:32'!
 acceptMagritte: aVisitor
@@ -7483,10 +7463,6 @@ descriptionLineCount
 label
 	^ 'Memo'! !
 
-!MAMemoDescription class methodsFor: '*magritte-seaside-defaults' stamp: 'lr 3/9/2006 11:33'!
-defaultComponentClasses
-	^ Array with: MATextAreaComponent! !
-
 !MAPasswordDescription methodsFor: 'visiting' stamp: 'lr 3/9/2006 11:32'!
 acceptMagritte: aVisitor
 	aVisitor visitPasswordDescription: self! !
@@ -7509,10 +7485,6 @@ obfuscated: anObject
 !MAPasswordDescription class methodsFor: 'accessing' stamp: 'lr 3/9/2006 11:33'!
 label
 	^ 'Password'! !
-
-!MAPasswordDescription class methodsFor: '*magritte-seaside-default' stamp: 'lr 9/21/2008 10:28'!
-defaultComponentClasses
-	^ Array with: MATextPasswordComponent with: MAVerifiedPasswordComponent with: MATextInputComponent! !
 
 !MASymbolDescription methodsFor: 'visiting' stamp: 'lr 3/9/2006 11:32'!
 acceptMagritte: aVisitor
@@ -9540,6 +9512,29 @@ street: anObject
 
 	street _ anObject! !
 
+!MAAddress class methodsFor: 'as yet unclassified' stamp: 'MM 3/10/2021 13:33:21'!
+descriptionCanton
+	^ MASingleOptionDescription new
+		options: #( 'Zurich' 'Bern' 'Luzern' 'Uri' 'Schwyz'
+				'Unterwalden' 'Glarus' 'Zug' 'Freiburg' 'Solothurn' 'Basel'
+				'Schaffhausen' 'Appenzell' 'St. Gallen' 'Graubunden' 'Aargau'
+				'Thurgau' 'Ticino' 'Vaud' 'Valais' 'Neuchatel' 'Geneve' 'Jura' );
+		reference: MAStringDescription new;
+		accessor: #canton;
+		label: 'Canton';
+		priority: 40;
+		beSorted;
+		yourself! !
+
+!MAAddress class methodsFor: 'as yet unclassified' stamp: 'MM 3/10/2021 13:32:30'!
+descriptionPlace
+
+	^ MAStringDescription new
+		accessor: #place;
+		label: 'Place';
+		priority: 30;
+		yourself! !
+
 !MAAddress class methodsFor: 'as yet unclassified' stamp: 'MM 3/10/2021 13:01:13'!
 descriptionPlz
 
@@ -9639,6 +9634,12 @@ initializeMagritte
 !Object methodsFor: '*Magritte' stamp: 'MM 3/10/2021 11:14:49'!
 isDescription
 	^ false! !
+
+!Object methodsFor: '*Magritte' stamp: 'MM 3/10/2021 13:34:52'!
+magritteDescription
+	"Return the canonical description of the receiver. Never override this method, instead modify #description."
+
+	^ self basicDescription! !
 
 !Object methodsFor: '*Magritte' stamp: 'MM 3/10/2021 11:10:08'!
 mementoClass
