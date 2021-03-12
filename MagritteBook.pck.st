@@ -1,6 +1,6 @@
-'From Cuis 5.0 [latest update: #4528] on 12 March 2021 at 6:40:54 pm'!
+'From Cuis 5.0 [latest update: #4528] on 12 March 2021 at 6:50:59 pm'!
 'Description '!
-!provides: 'MagritteBook' 1 10!
+!provides: 'MagritteBook' 1 11!
 !requires: 'Erudite' 1 153 nil!
 !requires: 'Magritte' 1 8 nil!
 SystemOrganization addCategory: 'MagritteBook'!
@@ -17,7 +17,7 @@ MagritteBook class
 	instanceVariableNames: ''!
 
 
-!MagritteBook methodsFor: 'as yet unclassified' stamp: 'MM 3/12/2021 18:40:51'!
+!MagritteBook methodsFor: 'as yet unclassified' stamp: 'MM 3/12/2021 18:50:56'!
 AccessorsAndMementos
 ^(EruditeBookSection basicNew title: 'Accessors and Mementos'; document: ((EruditeDocument contents: '!!!! Accessors and Mementos
 
@@ -2912,7 +2912,7 @@ L7+cy40iT4Ff/3y98bXLX+bQLr8/zocPHz58WD1y/iHgw4cPHz584+PDhw8fPnz4xseHDx8+
 fPjwjY8PHz58+PDhGx8fPnz48OHDNz4+fPjw4cOHb3x8+PDhw4cP3/j48OHDhw8fvvHx4cOH
 Dx8+U/A/N91ntQ56bxYAAAAASUVORK5CYII=')); yourself); yourself); subsections: (OrderedCollection new yourself); yourself)! !
 
-!MagritteBook methodsFor: 'as yet unclassified' stamp: 'MM 3/12/2021 18:40:50'!
+!MagritteBook methodsFor: 'as yet unclassified' stamp: 'MM 3/12/2021 18:50:55'!
 AddingValidation
 ^(EruditeBookSection basicNew title: 'Adding validation'; document: ((EruditeDocument contents: '!!!! Adding validation
 
@@ -2956,7 +2956,23 @@ descriptionContainer
 
 This simply intercepts the container after it is built, and adds a multi field validation by accessing the potential value of those fields. You get the memento for the object, and all the field values are in its cache, keyed by their descriptions. You simply read the values and validate them before they have a chance to be written to the real business object. Multi field validations are a bit more complicated than single field validations but this pattern works well.') images: ((Dictionary new)); yourself); subsections: (OrderedCollection new yourself); yourself)! !
 
-!MagritteBook methodsFor: 'as yet unclassified' stamp: 'MM 3/12/2021 18:40:50'!
+!MagritteBook methodsFor: 'as yet unclassified' stamp: 'MM 3/12/2021 18:50:56'!
+CustomDescriptions
+^(EruditeBookSection basicNew title: 'Custom Descriptions'; document: ((EruditeDocument contents: '!!!! Custom Descriptions
+
+In some cases it might happen that there is no description provided to use with a class. If your domain manipulates money (amount and currency) or URLs (scheme, domain, port, path, parameters) you may want to define your own descriptions (or load an extension package that already provides these descriptions) to take advantage of Magritte.
+
+Extending Magritte is simple, create your own description but remember that Magritte is described within itself so you have to provide certain information.
+
+* Create a subclass of {MAElementDescription::class}.
+
+* On the class-side override: {isAbstract::selector} to return false, label to return the name of the description. On the instance-side override: kind to return the base-class, {acceptMagritte: ::selector} to enable visiting and {validateSpecific: ::selector} to validate.
+    
+* Create a view, if you want to use it for UI building. 
+
+We suggest you have a look at existing descriptions. In addition, carefully choosing the right superclass can already provide you part of what you are looking for. Parsing, printing and (de)serialization is implemented by the following visitors: {MAStringReader::class}, {MAStringWriter::class}, {MABinaryReader::class} and {MABinaryWriter::class}.') images: ((Dictionary new)); yourself); subsections: (OrderedCollection new yourself); yourself)! !
+
+!MagritteBook methodsFor: 'as yet unclassified' stamp: 'MM 3/12/2021 18:50:54'!
 Descriptions
 ^(EruditeBookSection basicNew title: 'Descriptions'; document: ((EruditeDocument contents: '!!!! Descriptions
 
@@ -11159,7 +11175,7 @@ z+fz+Xw+n8/n8/l8Pp/P5/uSz+fz+Xw+n8/n8/l8Pp/P5/P5fD6fz+fz+ANLfT6fz+fz+Xw+
 n8/n8/l8Pp/P5/P5fD6fz+fz+Xw+n8/n8/l8Pp/P5/P5fD6fz+fz+Xw+n8/n8/l8Pp/P5/P5
 fD6fz+fz+Xw+31/+P/cYaHayCZFyAAAAAElFTkSuQmCC')); yourself); yourself); subsections: (OrderedCollection new yourself); yourself)! !
 
-!MagritteBook methodsFor: 'as yet unclassified' stamp: 'MM 3/12/2021 18:40:50'!
+!MagritteBook methodsFor: 'as yet unclassified' stamp: 'MM 3/12/2021 18:50:55'!
 Exceptions
 ^(EruditeBookSection basicNew title: 'Exceptions'; document: ((EruditeDocument contents: '!!!! Exceptions
 
@@ -14135,7 +14151,7 @@ n8/n8/l8Pp/P5/P5fD6fz+fz+Xw+n8/n8/l8Pp/P5/P5fD6fz+fz+Xw+n8/n8/l8Pp/P5/P5
 gvxH/Hw+n8/n8/l8Pp/P5/P5fD6fz+fz+Xw+n28SPp/P5/P5fD6fz+fz+Xw+n8/n8/l8Pp/P
 5/P5fD6fz+fz+Xw+n8/n8/l8vhJ9AYEO7MuurbRBAAAAAElFTkSuQmCC')); yourself); yourself); subsections: (OrderedCollection new yourself); yourself)! !
 
-!MagritteBook methodsFor: 'as yet unclassified' stamp: 'MM 3/12/2021 18:40:47'!
+!MagritteBook methodsFor: 'as yet unclassified' stamp: 'MM 3/12/2021 18:50:52'!
 FirstConcreteExample
 ^(EruditeBookSection basicNew title: 'First concrete example'; document: ((EruditeDocument contents: '!!!! First concrete example
 
@@ -18050,7 +18066,7 @@ J5988sknn3xmQ75wkU8++eSTTz755JNPPvnkk08++eSTTz755JNPPvnMhnzhIp988sknn3zy
 ySeffPLJJ5988sknn3zyySeffPKZDfnCRT755JNPPvnkk08++eSTTz75HDz55JNPPvnkk08+
 +fz//F8U3FGwdOOKxwAAAABJRU5ErkJggg==')); yourself); yourself); subsections: (OrderedCollection new yourself); yourself)! !
 
-!MagritteBook methodsFor: 'as yet unclassified' stamp: 'MM 3/12/2021 18:40:46'!
+!MagritteBook methodsFor: 'as yet unclassified' stamp: 'MM 3/12/2021 18:50:51'!
 Introduction
 ^(EruditeBookSection basicNew title: 'Introduction'; document: ((EruditeDocument contents: 'This booklet describes Magritte and one tutorial to illustrate it. Magritte is a meta-data driven framework. This means that you describe your objects and based on such descriptions you can get for free different interpreters
 performing tedious tasks. One task is the generation of forms and report in Seaside.
@@ -18059,7 +18075,7 @@ Magritte was designed and developed by Lukas Renggli during his master under the
 
 In this booklet we present briefly the latest version of Magritte and we propose a serie of exercises.') images: ((Dictionary new)); yourself); subsections: (OrderedCollection new yourself); yourself)! !
 
-!MagritteBook methodsFor: 'as yet unclassified' stamp: 'MM 3/12/2021 18:40:46'!
+!MagritteBook methodsFor: 'as yet unclassified' stamp: 'MM 3/12/2021 18:50:51'!
 MagritteInANutshell
 ^(EruditeBookSection basicNew title: 'Magritte in a nutshell'; document: ((EruditeDocument contents: '!!!! Magritte in a nutshell
 
@@ -18070,7 +18086,7 @@ Magritte is a meta-data description framework. With Magritte you describe your d
 In this chapter we describe Magritte, its design and how to customize it. Now be warned, Magritte is a framework supporting meta-data description. As any framework, mastering it takes time. It is not a scaffolding engine, therefore Magritte may imply some extra complexity and you have to understand when you want to pay for such complexity.') images: ((Dictionary new)); yourself); subsections: (OrderedCollection new        add: self MagritteInANutshellBasicPrinciples;
  yourself); yourself)! !
 
-!MagritteBook methodsFor: 'as yet unclassified' stamp: 'MM 3/12/2021 18:40:47'!
+!MagritteBook methodsFor: 'as yet unclassified' stamp: 'MM 3/12/2021 18:50:52'!
 MagritteInANutshellBasicPrinciples
 ^(EruditeBookSection basicNew title: 'Basic principles'; document: ((EruditeDocument contents: '!!!!!! Basic principles
 
@@ -22542,7 +22558,7 @@ z+fz+Xw+n8/n8/l8Pp/P5/P5fD6fz+fz+Xw+n8/n8/l8Pp/P5/P5HuYH8nw+n8/n8/l8Pp/P
 5/P5fD6fz+fz+Xw+n8/n8/l8Pp/P5/P5fD6fz+fz+Xw+n8/nu8P/B6fyAKqTErYWAAAAAElF
 TkSuQmCC')); yourself); yourself); subsections: (OrderedCollection new yourself); yourself)! !
 
-!MagritteBook methodsFor: 'as yet unclassified' stamp: 'MM 3/12/2021 18:40:46'!
+!MagritteBook methodsFor: 'as yet unclassified' stamp: 'MM 3/12/2021 18:50:51'!
 initialize
     super initialize.
     title _ 'MagritteBook'.
@@ -22553,4 +22569,5 @@ initialize
         self addSection: self Exceptions.
         self addSection: self AddingValidation.
         self addSection: self AccessorsAndMementos.
+        self addSection: self CustomDescriptions.
 ! !
