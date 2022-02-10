@@ -2,7 +2,7 @@
 'Description A book on Magritte metamodeling system.'!
 !provides: 'MagritteBook' 1 14!
 !requires: 'Erudite' 1 153 nil!
-!requires: 'Magritte' 1 8 nil!
+!requires: 'Magritte' 1 7 nil!
 SystemOrganization addCategory: 'MagritteBook'!
 
 
